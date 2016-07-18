@@ -34,6 +34,6 @@
         "psr-0": { "SDrost\\StateMachineBundle": "" },
         "psr-4": { "SDrost\\StateMachineBundle\\": "" }
     },
-    "target-dir": "SDrost/StateMachineBundle",
+//    "target-dir": "SDrost/StateMachineBundle",
     "minimum-stability": "dev"
 }
