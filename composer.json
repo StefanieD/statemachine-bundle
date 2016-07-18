@@ -32,5 +32,6 @@
     },
     "autoload": {
         "psr-4": { "KPhoen\\DoctrineStateMachineBundle\\": "" }
-    }
+    },
+    "minimum-stability": "dev"
 }
