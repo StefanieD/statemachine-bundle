@@ -1,5 +1,5 @@
 services:
      sdrost.state_machine.twig.extension:
-        class: SDrost\DoctrineStateMachineBundle\Twig\StateMachineExtension
+        class: SDrost\StateMachineBundle\Twig\StateMachineExtension
         tags:
             - { name: twig.extension }
