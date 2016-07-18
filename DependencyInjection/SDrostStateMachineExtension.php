@@ -1,5 +1,4 @@
 <?php
-
 namespace SDrost\StateMachineBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Processor;
