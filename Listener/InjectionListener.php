@@ -1,10 +1,10 @@
 <?php
-namespace Domtain\StateMachineBundle\Listener;
+namespace SDrost\StateMachineBundle\Listener;
 
-use Domtain\StateMachineBundle\Listener\Doctrine\InjectionListener as BaseInjectionListener;
+use SDrost\StateMachineBundle\Listener\Doctrine\InjectionListener as BaseInjectionListener;
 use Doctrine\Common\Util\ClassUtils;
 use JMS\Serializer\EventDispatcher\ObjectEvent;
-use Domtain\StateMachineBundle\Entity\Stateful;
+use SDrost\StateMachineBundle\Entity\Stateful;
 
 /**
  * Injects the state machines into stateful entities when they are loaded by

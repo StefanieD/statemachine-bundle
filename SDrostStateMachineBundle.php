@@ -1,15 +1,15 @@
 <?php
-namespace Domtain\StateMachineBundle;
+namespace SDrost\StateMachineBundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-use Domtain\StateMachineBundle\DependencyInjection\Compiler\LoaderCompilerPass;
+use SDrost\StateMachineBundle\DependencyInjection\Compiler\LoaderCompilerPass;
 
 /**
  * @author Kévin Gomez <contact@kevingomez.fr>
  */
-class DomtainStateMachineBundle extends Bundle
+class SDrostStateMachineBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {

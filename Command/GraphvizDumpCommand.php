@@ -1,7 +1,7 @@
 <?php
-namespace Domtain\StateMachineBundle\Command;
+namespace SDrost\StateMachineBundle\Command;
 
-use Domtain\StateMachineBundle\Services\Graphviz;
+use SDrost\StateMachineBundle\Services\Graphviz;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

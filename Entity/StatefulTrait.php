@@ -1,5 +1,5 @@
 <?php
-namespace Domtain\StateMachineBundle\Entity;
+namespace SDrost\StateMachineBundle\Entity;
 
 use Doctrine\Common\Inflector\Inflector;
 use Finite\StateMachine\StateMachine;

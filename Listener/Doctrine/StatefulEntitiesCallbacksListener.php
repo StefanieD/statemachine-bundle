@@ -1,5 +1,5 @@
 <?php
-namespace Domtain\StateMachineBundle\Listener\Doctrine;
+namespace SDrost\StateMachineBundle\Listener\Doctrine;
 
 use Doctrine\Common\Inflector\Inflector;
 use Finite\Event\FiniteEvents;

@@ -1,5 +1,5 @@
 <?php
-namespace Domtain\StateMachineBundle\DependencyInjection\Compiler;
+namespace SDrost\StateMachineBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;

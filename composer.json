@@ -1,7 +1,7 @@
 {
-    "name": "domtain/doctrine-statemachine-bundle",
+    "name": "StefanieD/statemachine-bundle",
     "description": "Use statemachines for doctrine entities.",
-    "keywords": ["doctrine2", "extension", "statemachine"],
+    "keywords": ["symfony", "doctrine2", "extension", "statemachine"],
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [

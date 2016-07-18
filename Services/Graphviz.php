@@ -1,5 +1,5 @@
 <?php
-namespace Domtain\StateMachineBundle\Services;
+namespace SDrost\StateMachineBundle\Services;
 
 use Alom\Graphviz\Digraph;
 use Finite\StateMachine\StateMachineInterface as StateMachine;

@@ -1,5 +1,5 @@
 <?php
-namespace Domtain\StateMachineBundle\Listener\Doctrine;
+namespace SDrost\StateMachineBundle\Listener\Doctrine;
 
 use Doctrine\Common\EventSubscriber;
 use Finite\Factory\FactoryInterface;
@@ -24,7 +24,7 @@ abstract class AbstractListener implements EventSubscriber
      */
     protected function isEntitySupported(\ReflectionClass $reflClass)
     {
-        return $reflClass->implementsInterface('\Domtain\StateMachineBundle\Entity\Stateful');
+        return $reflClass->implementsInterface('\SDrost\StateMachineBundle\Entity\Stateful');
     }
 
     protected function injectStateMachine($entity)

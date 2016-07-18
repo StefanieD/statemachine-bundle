@@ -1,5 +1,5 @@
 <?php
-namespace Domtain\StateMachineBundle\Factory;
+namespace SDrost\StateMachineBundle\Factory;
 
 use Finite\Loader\LoaderInterface as Loader;
 use Finite\Factory\SymfonyDependencyInjectionFactory as Basefactory;

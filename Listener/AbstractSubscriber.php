@@ -1,5 +1,5 @@
 <?php
-namespace Domtain\StateMachineBundle\Listener;
+namespace SDrost\StateMachineBundle\Listener;
 
 use Doctrine\Common\Inflector\Inflector;
 use Finite\Event\FiniteEvents;
@@ -83,7 +83,7 @@ abstract class AbstractSubscriber implements EventSubscriberInterface
     /**
      * Try to call a state lifecycle callback
      *
-     * @param \Domtain\StateMachineBundle\Entity\Stateful $object
+     * @param \SDrost\StateMachineBundle\Entity\Stateful $object
      * @param string $previousState
      * @param string $callbackPrefix
      * @param string $transitionName

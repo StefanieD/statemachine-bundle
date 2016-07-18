@@ -1,6 +1,6 @@
 <?php
 
-namespace Domtain\StateMachineBundle\StateMachine;
+namespace SDrost\StateMachineBundle\StateMachine;
 
 use Finite\StateMachine\StateMachine;
 

@@ -1,5 +1,5 @@
 <?php
-namespace Domtain\StateMachineBundle\Entity;
+namespace SDrost\StateMachineBundle\Entity;
 
 use Finite\StateMachine\StateMachine;
 use Finite\StatefulInterface;

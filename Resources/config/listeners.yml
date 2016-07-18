@@ -1,7 +1,7 @@
 parameters:
-    domtain.state_machine.listener.persistence.class: Domtain\StateMachineBundle\Listener\Doctrine\PersistenceListener
-    domtain.state_machine.listener.injection.class: Domtain\StateMachineBundle\Listener\InjectionListener
-    domtain.state_machine.listener.callbacks.class: Domtain\StateMachineBundle\Listener\Doctrine\StatefulEntitiesCallbacksListener
+    domtain.state_machine.listener.persistence.class: SDrost\StateMachineBundle\Listener\Doctrine\PersistenceListener
+    domtain.state_machine.listener.injection.class: SDrost\StateMachineBundle\Listener\InjectionListener
+    domtain.state_machine.listener.callbacks.class: SDrost\StateMachineBundle\Listener\Doctrine\StatefulEntitiesCallbacksListener
 
 services:
     # doctrine listeners

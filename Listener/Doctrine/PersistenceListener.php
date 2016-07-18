@@ -1,5 +1,5 @@
 <?php
-namespace Domtain\StateMachineBundle\Listener\Doctrine;
+namespace SDrost\StateMachineBundle\Listener\Doctrine;
 
 use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\Event\LifecycleEventArgs;

@@ -1,19 +1,19 @@
 parameters:
-    domtain.state_machine.factory.class: Domtain\StateMachineBundle\Factory\Factory
-    domtain.state_machine.array_loader.class: Finite\Loader\ArrayLoader
-    domtain.state_machine.class: Domtain\StateMachineBundle\StateMachine\ExtendedStateMachine
+    sdrost.state_machine.factory.class: SDrost\StateMachineBundle\Factory\Factory
+    sdrost.state_machine.array_loader.class: Finite\Loader\ArrayLoader
+    sdrost.state_machine.class: SDrost\StateMachineBundle\StateMachine\ExtendedStateMachine
 
 services:
-    domtain.state_machine.factory:
+    sdrost.state_machine.factory:
         class: %domtain.state_machine.factory.class%
         arguments: [ "@service_container", 'sdrost.state_machine' ]
 
-    domtain.state_machine.array_loader:
+    sdrost.state_machine.array_loader:
         class:      %domtain.state_machine.array_loader.class%
         arguments:  [ ~ ]
         public:     false
 
-    domtain.state_machine:
+    sdrost.state_machine:
         class:      %domtain.state_machine.class%
         arguments:  [ ~, "@event_dispatcher" ]
         # will be flagged In the KPhoenDoctrineStateMachineExtension as
