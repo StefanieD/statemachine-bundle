@@ -9,11 +9,11 @@ class LoaderCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        if (false === $container->hasDefinition('domtain.state_machine.factory')) {
+        if (false === $container->hasDefinition('sdrost.state_machine.factory')) {
             return;
         }
 
-        $definition = $container->getDefinition('domtain.state_machine.factory');
+        $definition = $container->getDefinition('sdrost.state_machine.factory');
 
         foreach ($container->findTaggedServiceIds('state_machine.loader') as $id => $attributes) {
             $definition->addMethodCall('addNamedLoader', array($attributes[0]['state_machine'], new Reference($id)));

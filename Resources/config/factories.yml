@@ -5,16 +5,16 @@ parameters:
 
 services:
     sdrost.state_machine.factory:
-        class: %domtain.state_machine.factory.class%
+        class: %sdrost.state_machine.factory.class%
         arguments: [ "@service_container", 'sdrost.state_machine' ]
 
     sdrost.state_machine.array_loader:
-        class:      %domtain.state_machine.array_loader.class%
+        class:      %sdrost.state_machine.array_loader.class%
         arguments:  [ ~ ]
         public:     false
 
     sdrost.state_machine:
-        class:      %domtain.state_machine.class%
+        class:      %sdrost.state_machine.class%
         arguments:  [ ~, "@event_dispatcher" ]
         # will be flagged In the KPhoenDoctrineStateMachineExtension as
         # "scope: prototype" or "shared: false", according to the current

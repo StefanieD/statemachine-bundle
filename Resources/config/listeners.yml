@@ -1,25 +1,25 @@
 parameters:
-    domtain.state_machine.listener.persistence.class: SDrost\StateMachineBundle\Listener\Doctrine\PersistenceListener
-    domtain.state_machine.listener.injection.class: SDrost\StateMachineBundle\Listener\InjectionListener
-    domtain.state_machine.listener.callbacks.class: SDrost\StateMachineBundle\Listener\Doctrine\StatefulEntitiesCallbacksListener
+    sdrost.state_machine.listener.persistence.class: SDrost\StateMachineBundle\Listener\Doctrine\PersistenceListener
+    sdrost.state_machine.listener.injection.class: SDrost\StateMachineBundle\Listener\InjectionListener
+    sdrost.state_machine.listener.callbacks.class: SDrost\StateMachineBundle\Listener\Doctrine\StatefulEntitiesCallbacksListener
 
 services:
     # doctrine listeners
-    domtain.state_machine.listener.persistence:
-        class:      %domtain.state_machine.listener.persistence.class%
-        arguments:  [ "@domtain.state_machine.factory" ]
+    sdrost.state_machine.listener.persistence:
+        class:      %sdrost.state_machine.listener.persistence.class%
+        arguments:  [ "@sdrost.state_machine.factory" ]
         tags:
             - { name: doctrine.event_subscriber }
 
-    domtain.state_machine.listener.injection:
-        class:      %domtain.state_machine.listener.injection.class%
-        arguments:  [ "@domtain.state_machine.factory" ]
+    sdrost.state_machine.listener.injection:
+        class:      %sdrost.state_machine.listener.injection.class%
+        arguments:  [ "@sdrost.state_machine.factory" ]
         tags:
             - { name: doctrine.event_subscriber }
             - { name: jms_serializer.event_listener, event: serializer.post_deserialize, method: onPostDeserialize }
 
     # finite listeners
-    domtain.state_machine.listener.callbacks:
-        class:      %domtain.state_machine.listener.callbacks.class%
+    sdrost.state_machine.listener.callbacks:
+        class:      %sdrost.state_machine.listener.callbacks.class%
         tags:
             - { name: kernel.event_subscriber }

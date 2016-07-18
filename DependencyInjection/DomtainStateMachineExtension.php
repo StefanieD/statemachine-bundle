@@ -38,15 +38,15 @@ class DomtainStateMachineExtension extends Extension
 
         // disable useless listeners
         if (!$config['auto_injection']) {
-            $container->removeDefinition('domtain.state_machine.listener.injection');
+            $container->removeDefinition('sdrost.state_machine.listener.injection');
         }
 
         if (!$config['auto_validation']) {
-            $container->removeDefinition('domtain.state_machine.listener.persistence');
+            $container->removeDefinition('sdrost.state_machine.listener.persistence');
         }
 
         // set the kphoen.state_machine service as "not shared" (or scope: prototype)
-        $stateMachineDefinition = $container->getDefinition('domtain.state_machine');
+        $stateMachineDefinition = $container->getDefinition('sdrost.state_machine');
         if (method_exists($stateMachineDefinition, 'setShared')) {
             $stateMachineDefinition->setShared(false);
         } else {
@@ -56,11 +56,11 @@ class DomtainStateMachineExtension extends Extension
 
     protected function registerStateMachines(array $machines, ContainerBuilder $container)
     {
-        $persistenceListenerDef = $container->getDefinition('domtain.state_machine.listener.persistence');
+        $persistenceListenerDef = $container->getDefinition('sdrost.state_machine.listener.persistence');
 
         foreach ($machines as $name => $config) {
             $container
-                ->setDefinition('domtain.state_machine.loader.'.$name, new DefinitionDecorator('domtain.state_machine.array_loader'))
+                ->setDefinition('sdrost.state_machine.loader.'.$name, new DefinitionDecorator('sdrost.state_machine.array_loader'))
                 ->replaceArgument(0, $config)
                 ->addTag('state_machine.loader', array('state_machine' => $name))
             ;

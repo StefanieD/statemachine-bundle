@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('domtain_state_machine');
+        $rootNode = $treeBuilder->root('sdrost_state_machine');
 
         $this->addGeneralSection($rootNode);
         $this->addStateMachinesSection($rootNode);
