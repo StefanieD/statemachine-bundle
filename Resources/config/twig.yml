@@ -1,0 +1,5 @@
+services:
+     sdrost.state_machine.twig.extension:
+        class: KPhoen\DoctrineStateMachineBundle\Twig\StateMachineExtension
+        tags:
+            - { name: twig.extension }
