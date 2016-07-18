@@ -1,0 +1,21 @@
+parameters:
+    domtain.state_machine.factory.class: Domtain\StateMachineBundle\Factory\Factory
+    domtain.state_machine.array_loader.class: Finite\Loader\ArrayLoader
+    domtain.state_machine.class: Domtain\StateMachineBundle\StateMachine\ExtendedStateMachine
+
+services:
+    domtain.state_machine.factory:
+        class: %domtain.state_machine.factory.class%
+        arguments: [ "@service_container", 'sdrost.state_machine' ]
+
+    domtain.state_machine.array_loader:
+        class:      %domtain.state_machine.array_loader.class%
+        arguments:  [ ~ ]
+        public:     false
+
+    domtain.state_machine:
+        class:      %domtain.state_machine.class%
+        arguments:  [ ~, "@event_dispatcher" ]
+        # will be flagged In the KPhoenDoctrineStateMachineExtension as
+        # "scope: prototype" or "shared: false", according to the current
+        # Symfony version
