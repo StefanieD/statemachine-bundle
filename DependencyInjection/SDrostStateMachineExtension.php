@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 /**
  * @author Kévin Gomez <contact@kevingomez.fr>
  */
-class DomtainStateMachineExtension extends Extension
+class SDrostStateMachineExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
