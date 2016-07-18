@@ -30,6 +30,6 @@
         "alom/graphviz": "To generate Graphviz views of state machines",
         "symfony/console": "To execute the command to generate Graphviz views of state machines"
     },
-    "target-dir": "SDrost/StatemachineBundle",
+    "target-dir": "SDrost/StateMachineBundle",
     "minimum-stability": "dev"
 }
