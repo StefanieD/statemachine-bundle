@@ -1,5 +1,5 @@
 {
-    "name": "StefanieD/statemachine-bundle",
+    "name": "sdrost/statemachine-bundle",
     "description": "Use statemachines for doctrine entities.",
     "keywords": ["symfony", "doctrine2", "extension", "statemachine"],
     "type": "symfony-bundle",
@@ -31,8 +31,9 @@
         "symfony/console": "To execute the command to generate Graphviz views of state machines"
     },
     "autoload": {
-        "psr-0": { "SDrost\\StateMachineBundle": "" }
+        "psr-4": {
+            "SDrost\\StateMachineBundle\\": ""
+        }
     },
-    "target-dir": "SDrost/StateMachineBundle",
     "minimum-stability": "dev"
 }
