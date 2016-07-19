@@ -14,7 +14,7 @@ use Finite\Transition\TransitionInterface;
  *
  * @author Kévin Gomez <contact@kevingomez.fr>
  */
-trait StateMachineExtension
+trait StateMachineTrait
 {
     protected $statePrecedence = array();
 

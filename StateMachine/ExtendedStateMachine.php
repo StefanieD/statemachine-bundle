@@ -9,5 +9,5 @@ use Finite\StateMachine\StateMachine;
  */
 class ExtendedStateMachine extends StateMachine
 {
-    use StateMachineExtension;
+    use StateMachineTrait;
 }
