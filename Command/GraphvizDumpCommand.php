@@ -23,8 +23,8 @@ class GraphvizDumpCommand extends ContainerAwareCommand
     {
         $stateMachineName = $input->getArgument('state-machine');
         $stateMachine = $this->getStateMachine($stateMachineName);
-        $visualisation = new Graphviz();
-        $visualisation->setPrintDirection('LR');
+
+        $visualisation = $this->getContainer()->get('sdrost.state_machine.graphviz');
         $tmpFileName = $stateMachineName . '.dot';
         $pictureName = $stateMachineName . '.png';
         $rootDir = $this->getContainer()->get('kernel')->getRootDir();

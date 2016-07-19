@@ -58,17 +58,28 @@ class Graphviz
                 $transition = $stateMachine->getTransition($transitionName);
 
                 $graph->beginEdge(
-                    array($stateName, $transition->getState()), array('label' => $transitionName))
+                    array($stateName, $transition->getState()), array('label' => $transitionName /*. $this->getTransitionCallbacks($transition)*/))
                     ->end();
             }
         }
     }
 
+    private function getTransitionCallbacks($transition)
+    {
+        $callbackString = "";
+        for($i=0; $i<=2; $i++) {
+            $callbackString .= "\n[callback" . $i . "]";
+        }
+
+        return $callbackString;
+    }
+
     private function getStateAttributes(State $state)
     {
-        return array(
+        return array_merge(array(
             'shape' => $this->getStateShape($state),
-            'label' => $state->getName(),
+            'label' => $state->getName()),
+            $this->getStateColorProperties($state)
         );
     }
 
@@ -78,9 +89,30 @@ class Graphviz
             case State::TYPE_INITIAL:
                 return 'doublecircle';
             case State::TYPE_FINAL:
-                return 'rect';
-            default:
                 return 'circle';
+            default:
+                return 'rect';
+        }
+    }
+
+    private function getStateColorProperties(State $state)
+    {
+        switch ($state->getType()) {
+            case State::TYPE_INITIAL:
+                return array(
+                    'style' => 'filled',
+                    'fillcolor' => 'darkolivegreen1'
+                );
+            case State::TYPE_FINAL:
+                return array(
+                    'style' => 'filled',
+                    'fillcolor' => 'aliceblue'
+                );
+            default:
+                return array(
+                    'style' => 'filled',
+                    'fillcolor' => 'beige'
+                );
         }
     }
 }

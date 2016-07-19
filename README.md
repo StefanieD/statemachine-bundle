@@ -52,3 +52,5 @@ class AppKernel extends Kernel
 Config
 ======
 visualization: possible values: TB, LR
+
+colors: http://www.graphviz.org/doc/info/colors.html
