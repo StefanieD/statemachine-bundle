@@ -35,7 +35,6 @@ class SDrostStateMachineExtension extends Extension
 
         // register state machine loaders
         $this->registerStateMachines($config['state_machines'], $container);
-
         // set visualization properties
         $this->setVisualizationProperties($config['visualization'], $container);
 
@@ -43,7 +42,6 @@ class SDrostStateMachineExtension extends Extension
         if (!$config['auto_injection']) {
             $container->removeDefinition('sdrost.state_machine.listener.injection');
         }
-
         if (!$config['auto_validation']) {
             $container->removeDefinition('sdrost.state_machine.listener.persistence');
         }
