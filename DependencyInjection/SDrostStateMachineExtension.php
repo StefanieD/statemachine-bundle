@@ -24,6 +24,7 @@ class SDrostStateMachineExtension extends Extension
 
         // load the services
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yml');
         $loader->load('factories.yml');
         $loader->load('listeners.yml');
 
@@ -34,6 +35,9 @@ class SDrostStateMachineExtension extends Extension
 
         // register state machine loaders
         $this->registerStateMachines($config['state_machines'], $container);
+
+        // set visualization properties
+        $this->setVisualizationProperties($config['visualization'], $container);
 
         // disable useless listeners
         if (!$config['auto_injection']) {
@@ -66,5 +70,10 @@ class SDrostStateMachineExtension extends Extension
 
             $persistenceListenerDef->addMethodCall('registerClass', array($config['class'], $config['property']));
         }
+    }
+
+    protected function setVisualizationProperties(array $properties, ContainerBuilder $container)
+    {
+        $container->get('sdrost.state_machine.graphviz')->setPrintDirection($properties['print_dir']);
     }
 }

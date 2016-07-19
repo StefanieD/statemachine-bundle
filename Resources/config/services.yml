@@ -1,0 +1,7 @@
+parameters:
+    sdrost.state_machine.graphviz.class: SDrost\StateMachineBundle\Services\Graphviz
+
+services:
+    # doctrine listeners
+    sdrost.state_machine.graphviz:
+        class:      %sdrost.state_machine.graphviz.class%

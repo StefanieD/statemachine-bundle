@@ -14,7 +14,7 @@ class GraphvizDumpCommand extends ContainerAwareCommand
      */
     protected function configure()
     {
-        $this->setName('state-machine:dump:graphviz')
+        $this->setName('sdrost:state-machine:print')
             ->setDescription('Generate a graphiz dump of a state machine')
             ->addArgument('state-machine', InputArgument::REQUIRED, 'The state machine to dump');
     }
@@ -24,6 +24,7 @@ class GraphvizDumpCommand extends ContainerAwareCommand
         $stateMachineName = $input->getArgument('state-machine');
         $stateMachine = $this->getStateMachine($stateMachineName);
         $visualisation = new Graphviz();
+        $visualisation->setPrintDirection('LR');
         $tmpFileName = $stateMachineName . '.dot';
         $pictureName = $stateMachineName . '.png';
         $rootDir = $this->getContainer()->get('kernel')->getRootDir();

@@ -21,6 +21,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('sdrost_state_machine');
 
         $this->addGeneralSection($rootNode);
+        $this->addVisualizationSection($rootNode);
         $this->addStateMachinesSection($rootNode);
 
         return $treeBuilder;
@@ -32,6 +33,21 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->booleanNode('auto_injection')->defaultTrue()->end()
                 ->booleanNode('auto_validation')->defaultTrue()->end()
+            ->end();
+    }
+
+    protected function addVisualizationSection(ArrayNodeDefinition $rootNode)
+    {
+        $rootNode
+            ->children()
+                ->arrayNode('visualization')
+                    ->children()
+                        ->scalarNode('print_dir')
+                            ->cannotBeEmpty()
+                            ->defaultValue('TB')
+                        ->end()
+                    ->end()
+                ->end()
             ->end();
     }
 

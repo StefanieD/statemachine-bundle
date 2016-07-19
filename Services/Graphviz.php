@@ -7,6 +7,8 @@ use Finite\State\StateInterface as State;
 
 class Graphviz
 {
+    protected $printDir;
+
     /**
      * Returns the dot representation of a state machine.
      *
@@ -18,7 +20,7 @@ class Graphviz
     {
         $graph = new Digraph('G');
 
-        $graph->set('rankdir', 'LR');
+        $graph->set('rankdir', $this->printDir);
 
         $this->addStates($graph, $stateMachine);
         $this->addTransitions($graph, $stateMachine);
@@ -26,6 +28,13 @@ class Graphviz
         $graph->end();
 
         return $graph->render();
+    }
+
+    public function setPrintDirection($dir)
+    {
+        $this->printDir = $dir;
+
+        return $this;
     }
 
     private function addStates(Digraph $graph, StateMachine $stateMachine)

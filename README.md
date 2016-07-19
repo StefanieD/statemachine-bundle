@@ -48,3 +48,7 @@ class AppKernel extends Kernel
     // ...
 }
 ```
+
+Config
+======
+visualization: possible values: TB, LR
