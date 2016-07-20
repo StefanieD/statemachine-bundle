@@ -46,6 +46,8 @@ class Configuration implements ConfigurationInterface
                             ->cannotBeEmpty()
                             ->defaultValue('TB')
                         ->end()
+                        ->scalarNode('print_callbacks')
+                        ->end()
                     ->end()
                 ->end()
             ->end();

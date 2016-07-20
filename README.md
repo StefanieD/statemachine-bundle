@@ -52,5 +52,6 @@ class AppKernel extends Kernel
 Config
 ======
 visualization: possible values: TB, LR
+print_callbacks: boolean (decide to print callback names in image)
 
 colors: http://www.graphviz.org/doc/info/colors.html

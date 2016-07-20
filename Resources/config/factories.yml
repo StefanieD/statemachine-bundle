@@ -1,16 +1,25 @@
 parameters:
     sdrost.state_machine.factory.class: SDrost\StateMachineBundle\Factory\Factory
-    sdrost.state_machine.array_loader.class: Finite\Loader\ArrayLoader
+    sdrost.state_machine.array_loader.class: SDrost\StateMachineBundle\Loader\ArrayLoader
     sdrost.state_machine.class: SDrost\StateMachineBundle\StateMachine\ExtendedStateMachine
+    sdrost.state_machine.callback_handler.class: Finite\Event\CallbackHandler
+    sdrost.state_machine.callback_builder_facotry.class: Finite\Event\Callback\CallbackBuilderFactory
 
 services:
     sdrost.state_machine.factory:
         class: %sdrost.state_machine.factory.class%
         arguments: [ "@service_container", 'sdrost.state_machine' ]
 
+    sdrost.state_machine.callback_builder_facotry:
+            class:      %sdrost.state_machine.callback_builder_facotry.class%
+
+    sdrost.state_machine.callback_handler:
+            class:      %sdrost.state_machine.callback_handler.class%
+            arguments:  [ "@event_dispatcher" ]
+
     sdrost.state_machine.array_loader:
         class:      %sdrost.state_machine.array_loader.class%
-        arguments:  [ ~ ]
+        arguments:  [ ~ , @sdrost.state_machine.callback_handler, @sdrost.state_machine.callback_builder_facotry]
         public:     false
 
     sdrost.state_machine:

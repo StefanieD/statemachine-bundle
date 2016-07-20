@@ -7,7 +7,15 @@ use Finite\State\StateInterface as State;
 
 class Graphviz
 {
+    /**
+     * @var string direction for graph
+     */
     protected $printDir;
+
+    /**
+     * @var bool
+     */
+    protected $printCallbacks = false;
 
     /**
      * Returns the dot representation of a state machine.
@@ -19,8 +27,10 @@ class Graphviz
     public function render(StateMachine $stateMachine)
     {
         $graph = new Digraph('G');
-
         $graph->set('rankdir', $this->printDir);
+//        $graph->set('rankSep', 1);
+//        $graph->set('nodeSep', 10);
+        $graph->set('ratio', 1);
 
         $this->addStates($graph, $stateMachine);
         $this->addTransitions($graph, $stateMachine);
@@ -28,13 +38,6 @@ class Graphviz
         $graph->end();
 
         return $graph->render();
-    }
-
-    public function setPrintDirection($dir)
-    {
-        $this->printDir = $dir;
-
-        return $this;
     }
 
     private function addStates(Digraph $graph, StateMachine $stateMachine)
@@ -57,28 +60,56 @@ class Graphviz
             foreach ($state->getTransitions() as $transitionName) {
                 $transition = $stateMachine->getTransition($transitionName);
 
+                $label = ($this->printCallbacks) ?
+                    $transitionName . $this->getTransitionCallbacks($stateMachine, $transitionName) :
+                    $transitionName;
+
                 $graph->beginEdge(
-                    array($stateName, $transition->getState()), array('label' => $transitionName /*. $this->getTransitionCallbacks($transition)*/))
-                    ->end();
+                    array($stateName, $transition->getState()),
+                    $this->getEdgeAttributes($label, $stateName, $transition->getState())
+                )->end();
             }
         }
     }
 
-    private function getTransitionCallbacks($transition)
+    private function getTransitionCallbacks($stateMachine, $transition)
     {
+        $callbacks = $stateMachine->getCallbacksOfTransition($transition);
         $callbackString = "";
-        for($i=0; $i<=2; $i++) {
-            $callbackString .= "\n[callback" . $i . "]";
+        foreach ($callbacks as $callbackName) {
+            $callbackString .= "\n [" . $callbackName . "] ";
         }
 
         return $callbackString;
     }
 
+    private function getEdgeAttributes($label, $fromState, $toState)
+    {
+        $options = array(
+            'label' => $label,
+            'fontname' => 'Verdana',
+            'fontsize' => 12
+        );
+
+        if ($fromState === $toState) {
+            $options = array_merge($options, array(
+                'color' => 'dimgray',
+                'fontcolor' => 'dimgray'
+            ));
+            $options['fontsize'] = 11;
+        }
+
+        return $options;
+    }
+
     private function getStateAttributes(State $state)
     {
-        return array_merge(array(
-            'shape' => $this->getStateShape($state),
-            'label' => $state->getName()),
+        return array_merge(
+            array(
+                'shape' => $this->getStateShape($state),
+                'label' => $state->getName(),
+                'fontname' => 'Verdana'
+            ),
             $this->getStateColorProperties($state)
         );
     }
@@ -91,7 +122,7 @@ class Graphviz
             case State::TYPE_FINAL:
                 return 'circle';
             default:
-                return 'rect';
+                return 'circle';
         }
     }
 
@@ -114,5 +145,19 @@ class Graphviz
                     'fillcolor' => 'beige'
                 );
         }
+    }
+
+    public function setPrintDirection($dir)
+    {
+        $this->printDir = $dir;
+
+        return $this;
+    }
+
+    public function setPrintCallbacks($value)
+    {
+        $this->printCallbacks = $value;
+
+        return $this;
     }
 }

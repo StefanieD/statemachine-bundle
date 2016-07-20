@@ -74,5 +74,6 @@ class SDrostStateMachineExtension extends Extension
     {
         $graphvizServiceDef = $container->getDefinition('sdrost.state_machine.graphviz');
         $graphvizServiceDef->addMethodCall('setPrintDirection', array($properties['print_dir']));
+        $graphvizServiceDef->addMethodCall('setPrintCallbacks', array($properties['print_callbacks']));
     }
 }
