@@ -70,8 +70,18 @@ class ExtendedStateMachine extends StateMachine
         return (isset($this->transitionCallbacks[$transition])) ? $this->transitionCallbacks[$transition] : array();
     }
 
+    public function getCallbacksOfState($state)
+    {
+        return (isset($this->stateCallbacks[$state])) ? $this->stateCallbacks[$state] : array();
+    }
+
     public function getTransitionCallbacks()
     {
         return $this->transitionCallbacks;
+    }
+
+    public function getStateCallbacks()
+    {
+        return $this->stateCallbacks;
     }
 }

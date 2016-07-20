@@ -28,9 +28,10 @@ class Graphviz
     {
         $graph = new Digraph('G');
         $graph->set('rankdir', $this->printDir);
-//        $graph->set('rankSep', 1);
-//        $graph->set('nodeSep', 10);
-        $graph->set('ratio', 1);
+        $graph->set('ranksep', 1.5); // distance between node levels
+        $graph->set('nodesep', 0.5); // distance between nodes same hierarchie
+        $graph->set('ratio', 2);
+        $graph->set('overlap', false);
 
         $this->addStates($graph, $stateMachine);
         $this->addTransitions($graph, $stateMachine);
@@ -59,9 +60,8 @@ class Graphviz
 
             foreach ($state->getTransitions() as $transitionName) {
                 $transition = $stateMachine->getTransition($transitionName);
-
                 $label = ($this->printCallbacks) ?
-                    $transitionName . $this->getTransitionCallbacks($stateMachine, $transitionName) :
+                    $transitionName . $this->getTransitionCallbacks($stateMachine, $transition) :
                     $transitionName;
 
                 $graph->beginEdge(
@@ -74,10 +74,13 @@ class Graphviz
 
     private function getTransitionCallbacks($stateMachine, $transition)
     {
-        $callbacks = $stateMachine->getCallbacksOfTransition($transition);
+        $callbacks = array_merge(
+            $stateMachine->getCallbacksOfTransition($transition->getName()),
+            $stateMachine->getCallbacksOfState($transition->getState())
+        );
         $callbackString = "";
         foreach ($callbacks as $callbackName) {
-            $callbackString .= "\n [" . $callbackName . "] ";
+            $callbackString .= "\r [" . $callbackName . "] ";
         }
 
         return $callbackString;
