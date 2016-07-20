@@ -76,7 +76,8 @@ class Graphviz
     {
         $callbacks = array_merge(
             $stateMachine->getCallbacksOfTransition($transition->getName()),
-            $stateMachine->getCallbacksOfState($transition->getState())
+            $stateMachine->getCallbacksToState($transition->getState()),
+            $stateMachine->getCallbacksFromState($transition->getState())
         );
         $callbackString = "";
         foreach ($callbacks as $callbackName) {

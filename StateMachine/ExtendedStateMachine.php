@@ -25,44 +25,55 @@ class ExtendedStateMachine extends StateMachine
      *
      * @var array
      */
-    protected $stateCallbacks = array();
+    protected $toStateCallbacks = array();
 
+    /**
+     * The state callbacks.
+     *
+     * @var array
+     */
+    protected $fromStateCallbacks = array();
 
-    public function addCallback($callback, $callbackName, $specs)
+    /**
+     * {@inheritdoc}
+     */
+    public function addTransitionCallback($callback, $methodName, $specs)
     {
-        if (isset($specs['on'][0])) {
-            $this->addTransitionCallback($callback, $specs['on'][0], $callbackName);
+        if (!$callback instanceof CallbackInterface) {
+            $callback = new CallbackBuilderFactory($callback);
         }
-        if (isset($specs['from'][0])) {
-            $this->addStateCallback($callback, $specs['from'][0], $callbackName);
-        }
-        if (isset($specs['to'][0])) {
-            $this->addStateCallback($callback, $specs['to'][0], $callbackName);
+
+        foreach ($specs['on'] as $transition) {
+            $this->transitionCallbacks[$transition][] = $methodName;
         }
     }
 
     /**
      * {@inheritdoc}
      */
-    public function addTransitionCallback($callback, $transition, $method)
+    public function addToStateCallback($callback, $methodName, $specs)
     {
         if (!$callback instanceof CallbackInterface) {
             $callback = new CallbackBuilderFactory($callback);
         }
 
-        $this->transitionCallbacks[$transition][] = $method;
+        foreach ($specs['to'] as $state) {
+            $this->toStateCallbacks[$state][] = $methodName;
+        }
     }
 
     /**
      * {@inheritdoc}
      */
-    public function addStateCallback($callback, $state, $method)
+    public function addFromStateCallback($callback, $methodName, $specs)
     {
         if (!$callback instanceof CallbackInterface) {
             $callback = new CallbackBuilderFactory($callback);
         }
 
-        $this->stateCallbacks[$state][] = $method;
+        foreach ($specs['from'] as $state) {
+            $this->fromStateCallbacks[$state][] = $methodName;
+        }
     }
 
     public function getCallbacksOfTransition($transition)
@@ -70,9 +81,14 @@ class ExtendedStateMachine extends StateMachine
         return (isset($this->transitionCallbacks[$transition])) ? $this->transitionCallbacks[$transition] : array();
     }
 
-    public function getCallbacksOfState($state)
+    public function getCallbacksToState($state)
     {
-        return (isset($this->stateCallbacks[$state])) ? $this->stateCallbacks[$state] : array();
+        return (isset($this->toStateCallbacks[$state])) ? $this->toStateCallbacks[$state] : array();
+    }
+
+    public function getCallbacksFromState($state)
+    {
+        return (isset($this->fromStateCallbacks[$state])) ? $this->fromStateCallbacks[$state] : array();
     }
 
     public function getTransitionCallbacks()
@@ -80,8 +96,13 @@ class ExtendedStateMachine extends StateMachine
         return $this->transitionCallbacks;
     }
 
-    public function getStateCallbacks()
+    public function getToStateCallbacks()
     {
-        return $this->stateCallbacks;
+        return $this->toStateCallbacks;
+    }
+
+    public function getFromStateCallbacks()
+    {
+        return $this->fromStateCallbacks;
     }
 }

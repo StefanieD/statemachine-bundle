@@ -172,7 +172,9 @@ class ArrayLoader implements LoaderInterface
                 ->setCallable($specs['do'])
                 ->getCallback();
 
-            $stateMachine->addCallback($callback, $callbackName, $specs);
+            $stateMachine->addTransitionCallback($callback, $callbackName, $specs);
+            $stateMachine->addToStateCallback($callback, $callbackName, $specs);
+            $stateMachine->addFromStateCallback($callback, $callbackName, $specs);
 
             $this->callbackHandler->$method($callback);
         }
